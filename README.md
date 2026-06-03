@@ -139,3 +139,10 @@ National Institute of Technology Rourkela
 
 Brain Tumor Segmentation, U-Net, GAN, DCGAN, Deep Learning, MRI, Medical Imaging, PyTorch, Biomedical Engineering, Computer Vision
 
+## Citation
+
+If you use this repository in your research or academic work, please cite:
+
+**Priyabrata Das.** *Brain Tumor Segmentation using Deep Learning with GANs.* GitHub Repository, 2026.
+
+Available at: https://github.com/PriyabrataDas1/brain-tumor-segmentation-gans
