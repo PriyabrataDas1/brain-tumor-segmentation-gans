@@ -119,10 +119,7 @@ brain-tumor-segmentation-gans/
 │
 ├── README.md
 ├── Brain_Tumor_Segmentation_using_Deep_Learning_with_GANs.ipynb
-└── Future Files
-    ├── results/
-    ├── images/
-    └── report/
+
 ```
 
 ---
