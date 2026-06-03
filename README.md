@@ -14,12 +14,12 @@ The generated images were combined with real MRI scans to improve segmentation p
 
 ### LGG MRI Segmentation Dataset
 
-- MRI Images and Corresponding Masks
-- Total Dataset Size: 3929 image-mask pairs
-- Training Samples: 3339
-- Test Samples: 590
-- Images resized to 256 × 256 pixels
-- Normalized for deep learning training
+* MRI Images and Corresponding Masks
+* Total Dataset Size: 3929 image-mask pairs
+* Training Samples: 3339
+* Test Samples: 590
+* Images resized to 256 × 256 pixels
+* Normalized for deep learning training
 
 ---
 
@@ -29,24 +29,24 @@ The generated images were combined with real MRI scans to improve segmentation p
 
 U-Net is a convolutional neural network architecture designed specifically for biomedical image segmentation.
 
-Features:
+**Features:**
 
-- Encoder-Decoder Architecture
-- Skip Connections
-- Batch Normalization
-- ReLU Activations
-- Pixel-wise Segmentation
+* Encoder-Decoder Architecture
+* Skip Connections
+* Batch Normalization
+* ReLU Activations
+* Pixel-wise Segmentation
 
 ### DCGAN
 
 Deep Convolutional Generative Adversarial Network (DCGAN)
 
-Purpose:
+**Purpose:**
 
-- Generate synthetic MRI images
-- Improve dataset diversity
-- Reduce overfitting
-- Enhance segmentation performance
+* Generate synthetic MRI images
+* Improve dataset diversity
+* Reduce overfitting
+* Enhance segmentation performance
 
 ---
 
@@ -63,15 +63,15 @@ Purpose:
 
 ## Results
 
-| Metric | Baseline U-Net | GAN-Augmented U-Net |
-|----------|----------|----------|
-| Dice Coefficient | 0.2067 | 0.3037 |
-| IoU Score | 0.1243 | 0.1918 |
+| Metric           | Baseline U-Net | GAN-Augmented U-Net |
+| ---------------- | -------------- | ------------------- |
+| Dice Coefficient | 0.2067         | 0.3037              |
+| IoU Score        | 0.1243         | 0.1918              |
 
 ### Performance Improvement
 
-- Dice Score Improvement: 46.94%
-- IoU Improvement: 54.36%
+* Dice Score Improvement: **46.94%**
+* IoU Improvement: **54.36%**
 
 The inclusion of GAN-generated MRI images significantly improved segmentation performance.
 
@@ -79,36 +79,36 @@ The inclusion of GAN-generated MRI images significantly improved segmentation pe
 
 ## Technologies Used
 
-- Python
-- PyTorch
-- NumPy
-- OpenCV
-- Matplotlib
-- Scikit-Learn
-- Google Colab
+* Python
+* PyTorch
+* NumPy
+* OpenCV
+* Matplotlib
+* Scikit-Learn
+* Google Colab
 
 ---
 
 ## Applications
 
-- Brain Tumor Detection
-- Medical Image Analysis
-- MRI Segmentation
-- Biomedical Engineering
-- AI-assisted Diagnosis
-- Healthcare Imaging
+* Brain Tumor Detection
+* Medical Image Analysis
+* MRI Segmentation
+* Biomedical Engineering
+* AI-assisted Diagnosis
+* Healthcare Imaging
 
 ---
 
 ## Future Work
 
-- Attention U-Net
-- U-Net++
-- 3D U-Net
-- Conditional GANs
-- Explainable AI (Grad-CAM)
-- Validation on BraTS Dataset
-- Clinical Translation Studies
+* Attention U-Net
+* U-Net++
+* 3D U-Net
+* Conditional GANs
+* Explainable AI (Grad-CAM)
+* Validation on BraTS Dataset
+* Clinical Translation Studies
 
 ---
 
@@ -129,8 +129,8 @@ brain-tumor-segmentation-gans/
 
 ## Author
 
-**Priyabrata Das**  
-Biomedical Engineering  
+**Priyabrata Das**
+Biomedical Engineering
 National Institute of Technology Rourkela
 
 ---
@@ -138,3 +138,4 @@ National Institute of Technology Rourkela
 ## Keywords
 
 Brain Tumor Segmentation, U-Net, GAN, DCGAN, Deep Learning, MRI, Medical Imaging, PyTorch, Biomedical Engineering, Computer Vision
+
