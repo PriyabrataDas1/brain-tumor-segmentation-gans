@@ -2,6 +2,18 @@
 
 Brain tumor MRI segmentation using a U-Net architecture enhanced through GAN-based synthetic data augmentation. Developed using PyTorch and evaluated on the LGG MRI Segmentation Dataset containing 3,929 image-mask pairs.
 
+## Project Highlights
+
+- Dataset: LGG MRI Segmentation Dataset (3,929 image-mask pairs)
+- Segmentation Model: U-Net
+- Data Augmentation Model: DCGAN
+- Synthetic MRI Images Generated: 3,339
+- Training Dataset Expansion: 3,339 → 6,678 samples
+- Dice Coefficient Improvement: 46.94%
+- IoU Improvement: 54.36%
+- Framework: PyTorch
+- Development Environment: Google Colab
+
 ---
 
 ## Overview
@@ -16,11 +28,11 @@ The study demonstrates that synthetic MRI generation can substantially improve s
 
 ## Objectives
 
-* Develop a U-Net-based framework for brain tumor segmentation.
-* Generate synthetic MRI images using a DCGAN architecture.
-* Address limited training data through GAN-based augmentation.
-* Improve segmentation accuracy and model robustness.
-* Quantitatively evaluate performance using Dice Coefficient and IoU metrics.
+- Develop a U-Net-based framework for brain tumor segmentation.
+- Generate synthetic MRI images using a DCGAN architecture.
+- Address limited training data through GAN-based augmentation.
+- Improve segmentation accuracy and model robustness.
+- Quantitatively evaluate performance using Dice Coefficient and IoU metrics.
 
 ---
 
@@ -30,21 +42,21 @@ The study demonstrates that synthetic MRI generation can substantially improve s
 
 The project utilizes the TCGA Lower Grade Glioma (LGG-MRI) dataset consisting of MRI scans and corresponding tumor masks.
 
-**Dataset Statistics**
+#### Dataset Statistics
 
-* Total image-mask pairs: 3,929
-* Training samples: 3,339
-* Testing samples: 590
-* Image resolution: 256 × 256 pixels
+- Total image-mask pairs: 3,929
+- Training samples: 3,339
+- Testing samples: 590
+- Image resolution: 256 × 256 pixels
 
 ### Preprocessing
 
 Prior to training, all images underwent preprocessing to ensure consistency and improve model convergence.
 
-* Image resizing to 256 × 256 pixels
-* Intensity normalization
-* Binary mask preparation
-* Dataset partitioning using an 85:15 train-test split
+- Image resizing to 256 × 256 pixels
+- Intensity normalization
+- Binary mask preparation
+- Dataset partitioning using an 85:15 train-test split
 
 ---
 
@@ -58,20 +70,20 @@ Following GAN training, synthetic MRI images were generated and combined with th
 
 The segmentation model is based on a custom U-Net implementation containing four encoder blocks, four decoder blocks, and a bottleneck layer. Skip connections are utilized to preserve spatial information and improve reconstruction accuracy.
 
-**Key Architectural Features**
+#### Key Architectural Features
 
-* Encoder-decoder architecture
-* Skip connections
-* Batch normalization
-* ReLU activation functions
-* Pixel-wise binary segmentation
+- Encoder-decoder architecture
+- Skip connections
+- Batch normalization
+- ReLU activation functions
+- Pixel-wise binary segmentation
 
-**Model Statistics**
+#### Model Statistics
 
-* Total trainable parameters: 31,042,369
-* Optimizer: Adam
-* Loss Function: Binary Cross Entropy (BCE)
-* Training epochs: 15
+- Total trainable parameters: 31,042,369
+- Optimizer: Adam
+- Loss Function: Binary Cross Entropy (BCE)
+- Training Epochs: 15
 
 ### DCGAN Architecture
 
@@ -79,10 +91,10 @@ A Deep Convolutional Generative Adversarial Network (DCGAN) was implemented to l
 
 The GAN framework consists of:
 
-* Generator network for synthetic MRI creation
-* Discriminator network for real/fake classification
-* Adversarial optimization strategy
-* 20 training epochs
+- Generator network for synthetic MRI creation
+- Discriminator network for real/fake classification
+- Adversarial optimization strategy
+- 20 training epochs
 
 The trained generator was used to create realistic synthetic MRI images for dataset augmentation.
 
@@ -90,12 +102,12 @@ The trained generator was used to create realistic synthetic MRI images for data
 
 To address training data scarcity, the GAN-generated images were incorporated into the original training dataset.
 
-**Augmentation Statistics**
+#### Augmentation Statistics
 
-* Tumor-containing MRI images used for GAN training: 1,141
-* Synthetic MRI images generated: 3,339
-* Original training samples: 3,339
-* Augmented training samples: 6,678
+- Tumor-containing MRI images used for GAN training: 1,141
+- Synthetic MRI images generated: 3,339
+- Original training samples: 3,339
+- Augmented training samples: 6,678
 
 ---
 
@@ -114,11 +126,11 @@ To address training data scarcity, the GAN-generated images were incorporated in
 
 ## Key Results
 
-* Generated 3,339 synthetic MRI images using DCGAN.
-* Expanded the training dataset from 3,339 to 6,678 samples.
-* Improved Dice Coefficient by 46.94%.
-* Improved IoU Score by 54.36%.
-* Reduced validation loss and improved model generalization.
+- Generated 3,339 synthetic MRI images using DCGAN.
+- Expanded the training dataset from 3,339 to 6,678 samples.
+- Improved Dice Coefficient by 46.94%.
+- Improved IoU Score by 54.36%.
+- Reduced validation loss and improved model generalization.
 
 ---
 
@@ -126,15 +138,15 @@ To address training data scarcity, the GAN-generated images were incorporated in
 
 The inclusion of GAN-generated MRI images resulted in a substantial improvement in segmentation performance. The augmented model demonstrated superior tumor boundary delineation, improved region localization, and enhanced generalization compared to the baseline model.
 
-| Metric           | Baseline U-Net | GAN-Augmented U-Net |
-| ---------------- | -------------- | ------------------- |
-| Dice Coefficient | 0.2067         | 0.3037              |
-| IoU Score        | 0.1243         | 0.1918              |
+| Metric | Baseline U-Net | GAN-Augmented U-Net |
+|----------|----------|----------|
+| Dice Coefficient | 0.2067 | 0.3037 |
+| IoU Score | 0.1243 | 0.1918 |
 
 ### Performance Improvement
 
-* Dice Coefficient Improvement: **46.94%**
-* IoU Improvement: **54.36%**
+- Dice Coefficient Improvement: **46.94%**
+- IoU Improvement: **54.36%**
 
 The augmented model also achieved a lower and more stable validation loss, indicating reduced overfitting and improved robustness on unseen MRI data.
 
@@ -150,39 +162,39 @@ Medical imaging datasets are often limited due to privacy constraints, annotatio
 
 ### Programming
 
-* Python
+- Python
 
 ### Deep Learning
 
-* PyTorch
+- PyTorch
 
 ### Computer Vision
 
-* OpenCV
-* NumPy
+- OpenCV
+- NumPy
 
 ### Machine Learning
 
-* Scikit-Learn
+- Scikit-Learn
 
 ### Visualization
 
-* Matplotlib
+- Matplotlib
 
 ### Development Environment
 
-* Google Colab
+- Google Colab
 
 ---
 
 ## Applications
 
-* Brain Tumor Segmentation
-* Medical Image Analysis
-* Biomedical Image Processing
-* Computer-Aided Diagnosis
-* AI-Assisted Healthcare
-* Clinical Decision Support Systems
+- Brain Tumor Segmentation
+- Medical Image Analysis
+- Biomedical Image Processing
+- Computer-Aided Diagnosis
+- AI-Assisted Healthcare
+- Clinical Decision Support Systems
 
 ---
 
@@ -190,14 +202,14 @@ Medical imaging datasets are often limited due to privacy constraints, annotatio
 
 Potential future improvements include:
 
-* Attention U-Net
-* U-Net++
-* 3D U-Net
-* Conditional GANs
-* Explainable AI (Grad-CAM)
-* BraTS Dataset Validation
-* Multi-modal MRI Analysis
-* Clinical Translation Studies
+- Attention U-Net
+- U-Net++
+- 3D U-Net
+- Conditional GANs
+- Explainable AI (Grad-CAM)
+- BraTS Dataset Validation
+- Multi-modal MRI Analysis
+- Clinical Translation Studies
 
 ---
 
@@ -231,9 +243,9 @@ Biomedical Engineering
 
 National Institute of Technology Rourkela
 
-GitHub: https://github.com/PriyabrataDas1
+**GitHub:** https://github.com/PriyabrataDas1
 
-LinkedIn: https://www.linkedin.com/in/priyabrata-das-74244033b/
+**LinkedIn:** https://www.linkedin.com/in/priyabrata-das-74244033b/
 
 ---
 
@@ -252,4 +264,3 @@ Das, P. *Brain Tumor Segmentation using Deep Learning with GANs*. GitHub Reposit
 Repository:
 
 https://github.com/PriyabrataDas1/brain-tumor-segmentation-gans
-
