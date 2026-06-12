@@ -70,7 +70,7 @@ The segmentation model is based on a custom U-Net implementation containing four
 
 * Total trainable parameters: 31,042,369
 * Optimizer: Adam
-* Loss function: Binary Cross Entropy (BCE)
+* Loss Function: Binary Cross Entropy (BCE)
 * Training epochs: 15
 
 ### DCGAN Architecture
@@ -203,17 +203,15 @@ Potential future improvements include:
 
 ## Repository Structure
 
+```text
 brain-tumor-segmentation-gans/
 
 ├── README.md
-
 ├── Brain_Tumor_Segmentation_using_Deep_Learning_with_GANs.ipynb
-
 ├── Brain_Tumor_Segmentation_GANs_Report.pdf
-
 ├── requirements.txt
-
 └── LICENSE
+```
 
 ---
 
@@ -254,3 +252,4 @@ Das, P. *Brain Tumor Segmentation using Deep Learning with GANs*. GitHub Reposit
 Repository:
 
 https://github.com/PriyabrataDas1/brain-tumor-segmentation-gans
+
