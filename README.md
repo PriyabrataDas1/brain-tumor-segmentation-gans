@@ -30,7 +30,7 @@ The study demonstrates that synthetic MRI generation can substantially improve s
 
 The project utilizes the TCGA Lower Grade Glioma (LGG-MRI) dataset consisting of MRI scans and corresponding tumor masks.
 
-Dataset statistics:
+**Dataset Statistics**
 
 * Total image-mask pairs: 3,929
 * Training samples: 3,339
@@ -58,7 +58,7 @@ Following GAN training, synthetic MRI images were generated and combined with th
 
 The segmentation model is based on a custom U-Net implementation containing four encoder blocks, four decoder blocks, and a bottleneck layer. Skip connections are utilized to preserve spatial information and improve reconstruction accuracy.
 
-Key architectural features:
+**Key Architectural Features**
 
 * Encoder-decoder architecture
 * Skip connections
@@ -66,7 +66,7 @@ Key architectural features:
 * ReLU activation functions
 * Pixel-wise binary segmentation
 
-Model statistics:
+**Model Statistics**
 
 * Total trainable parameters: 31,042,369
 * Optimizer: Adam
@@ -90,7 +90,7 @@ The trained generator was used to create realistic synthetic MRI images for data
 
 To address training data scarcity, the GAN-generated images were incorporated into the original training dataset.
 
-Augmentation statistics:
+**Augmentation Statistics**
 
 * Tumor-containing MRI images used for GAN training: 1,141
 * Synthetic MRI images generated: 3,339
@@ -137,6 +137,12 @@ The inclusion of GAN-generated MRI images resulted in a substantial improvement 
 * IoU Improvement: **54.36%**
 
 The augmented model also achieved a lower and more stable validation loss, indicating reduced overfitting and improved robustness on unseen MRI data.
+
+---
+
+## Research Significance
+
+Medical imaging datasets are often limited due to privacy constraints, annotation costs, and disease rarity. This work demonstrates how GAN-based synthetic data generation can be leveraged to improve segmentation performance while reducing dependence on large annotated datasets. The framework provides a scalable strategy for enhancing AI-assisted medical imaging systems and can be extended to other segmentation tasks in healthcare.
 
 ---
 
@@ -197,15 +203,17 @@ Potential future improvements include:
 
 ## Repository Structure
 
-```text
 brain-tumor-segmentation-gans/
 
 ├── README.md
+
 ├── Brain_Tumor_Segmentation_using_Deep_Learning_with_GANs.ipynb
+
 ├── Brain_Tumor_Segmentation_GANs_Report.pdf
+
 ├── requirements.txt
+
 └── LICENSE
-```
 
 ---
 
@@ -220,7 +228,9 @@ The results highlight the potential of generative deep learning techniques for d
 ## Author
 
 **Priyabrata Das**
+
 Biomedical Engineering
+
 National Institute of Technology Rourkela
 
 GitHub: https://github.com/PriyabrataDas1
@@ -244,4 +254,3 @@ Das, P. *Brain Tumor Segmentation using Deep Learning with GANs*. GitHub Reposit
 Repository:
 
 https://github.com/PriyabrataDas1/brain-tumor-segmentation-gans
-
