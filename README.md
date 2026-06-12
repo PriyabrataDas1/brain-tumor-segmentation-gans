@@ -1,99 +1,142 @@
 # Brain Tumor Segmentation using Deep Learning with GANs
 
+Brain tumor MRI segmentation using a U-Net architecture enhanced through GAN-based synthetic data augmentation. Developed using PyTorch and evaluated on the LGG MRI Segmentation Dataset containing 3,929 image-mask pairs.
+
+---
+
 ## Overview
 
-Brain tumor segmentation is a critical task in medical image analysis that assists clinicians in diagnosis, treatment planning, and disease monitoring. This project investigates the use of Deep Convolutional Generative Adversarial Networks (DCGANs) for synthetic MRI image generation and data augmentation to improve segmentation performance. A U-Net-based segmentation framework was developed and evaluated on the LGG MRI Segmentation Dataset, and the impact of GAN-generated images on segmentation accuracy was quantitatively assessed.
+Brain tumor segmentation is a critical task in medical image analysis that supports diagnosis, treatment planning, and disease monitoring. While deep learning architectures such as U-Net have demonstrated strong segmentation performance, their effectiveness is often constrained by the limited availability of annotated medical imaging datasets.
+
+This project investigates the use of Deep Convolutional Generative Adversarial Networks (DCGANs) for synthetic MRI image generation and dataset augmentation. A custom U-Net segmentation framework was trained on the LGG MRI Segmentation Dataset and subsequently retrained using GAN-generated synthetic images to evaluate the impact of data augmentation on segmentation performance.
+
+The study demonstrates that synthetic MRI generation can substantially improve segmentation accuracy and model generalization while reducing the effects of data scarcity.
 
 ---
 
 ## Objectives
 
-- Develop a U-Net-based brain tumor segmentation framework.
-- Generate synthetic MRI images using DCGANs.
-- Address limited annotated medical imaging data through augmentation.
-- Improve segmentation performance and model generalization.
-- Compare baseline and GAN-augmented models using standard evaluation metrics.
+* Develop a U-Net-based framework for brain tumor segmentation.
+* Generate synthetic MRI images using a DCGAN architecture.
+* Address limited training data through GAN-based augmentation.
+* Improve segmentation accuracy and model robustness.
+* Quantitatively evaluate performance using Dice Coefficient and IoU metrics.
 
 ---
 
 ## Dataset
 
-**LGG MRI Segmentation Dataset**
+### LGG MRI Segmentation Dataset
 
-- Total MRI image-mask pairs: 3,929
-- Training samples: 3,339
-- Test samples: 590
-- Image resolution: 256 × 256 pixels
-- MRI images with corresponding tumor masks
+The project utilizes the TCGA Lower Grade Glioma (LGG-MRI) dataset consisting of MRI scans and corresponding tumor masks.
+
+Dataset statistics:
+
+* Total image-mask pairs: 3,929
+* Training samples: 3,339
+* Testing samples: 590
+* Image resolution: 256 × 256 pixels
 
 ### Preprocessing
 
-- Image resizing
-- Intensity normalization
-- Mask preparation
-- Dataset splitting for training and testing
+Prior to training, all images underwent preprocessing to ensure consistency and improve model convergence.
+
+* Image resizing to 256 × 256 pixels
+* Intensity normalization
+* Binary mask preparation
+* Dataset partitioning using an 85:15 train-test split
 
 ---
 
 ## Methodology
 
-The project was conducted in two major stages. First, a baseline U-Net segmentation model was trained using the original MRI dataset. Subsequently, a Deep Convolutional Generative Adversarial Network (DCGAN) was trained on tumor-containing MRI slices to generate synthetic MRI images.
+The proposed framework consists of two independent segmentation pipelines. The baseline pipeline employs a custom U-Net architecture trained solely on real MRI images. The second pipeline incorporates synthetic MRI samples generated using a Deep Convolutional Generative Adversarial Network (DCGAN).
 
-The generated images were incorporated into the training dataset to increase data diversity and reduce overfitting. The U-Net model was then retrained using the augmented dataset, and its performance was compared with the baseline model.
+Following GAN training, synthetic MRI images were generated and combined with the original training dataset, effectively doubling the number of training samples. A second U-Net model with identical architecture and training parameters was then trained on the augmented dataset to provide a fair comparison between baseline and augmented approaches.
 
 ### U-Net Architecture
 
-The segmentation model was based on the U-Net architecture, which is widely used for biomedical image segmentation due to its encoder-decoder structure and skip connections.
+The segmentation model is based on a custom U-Net implementation containing four encoder blocks, four decoder blocks, and a bottleneck layer. Skip connections are utilized to preserve spatial information and improve reconstruction accuracy.
 
-Key features include:
+Key architectural features:
 
-- Encoder-decoder architecture
-- Skip connections
-- Batch normalization
-- ReLU activation functions
-- Pixel-wise segmentation
+* Encoder-decoder architecture
+* Skip connections
+* Batch normalization
+* ReLU activation functions
+* Pixel-wise binary segmentation
+
+Model statistics:
+
+* Total trainable parameters: 31,042,369
+* Optimizer: Adam
+* Loss function: Binary Cross Entropy (BCE)
+* Training epochs: 15
 
 ### DCGAN Architecture
 
-The augmentation model was implemented using a Deep Convolutional Generative Adversarial Network (DCGAN).
+A Deep Convolutional Generative Adversarial Network (DCGAN) was implemented to learn the distribution of tumor-containing MRI slices.
 
-The DCGAN was used to:
+The GAN framework consists of:
 
-- Generate synthetic MRI images
-- Increase dataset diversity
-- Improve model robustness
-- Enhance segmentation accuracy
+* Generator network for synthetic MRI creation
+* Discriminator network for real/fake classification
+* Adversarial optimization strategy
+* 20 training epochs
+
+The trained generator was used to create realistic synthetic MRI images for dataset augmentation.
+
+### Synthetic Data Augmentation
+
+To address training data scarcity, the GAN-generated images were incorporated into the original training dataset.
+
+Augmentation statistics:
+
+* Tumor-containing MRI images used for GAN training: 1,141
+* Synthetic MRI images generated: 3,339
+* Original training samples: 3,339
+* Augmented training samples: 6,678
 
 ---
 
 ## Experimental Workflow
 
-1. MRI image preprocessing and normalization
-2. Baseline U-Net training
-3. Baseline performance evaluation
-4. DCGAN training on tumor-containing MRI images
-5. Synthetic MRI generation
-6. Dataset augmentation
-7. Retraining of U-Net on augmented data
-8. Final evaluation and performance comparison
+1. MRI image preprocessing and normalization.
+2. Baseline U-Net training on original data.
+3. Baseline segmentation evaluation.
+4. DCGAN training using tumor-containing MRI slices.
+5. Generation of synthetic MRI images.
+6. Dataset augmentation with synthetic samples.
+7. Retraining of U-Net on augmented data.
+8. Final evaluation and performance comparison.
+
+---
+
+## Key Results
+
+* Generated 3,339 synthetic MRI images using DCGAN.
+* Expanded the training dataset from 3,339 to 6,678 samples.
+* Improved Dice Coefficient by 46.94%.
+* Improved IoU Score by 54.36%.
+* Reduced validation loss and improved model generalization.
 
 ---
 
 ## Results
 
-### Segmentation Performance
+The inclusion of GAN-generated MRI images resulted in a substantial improvement in segmentation performance. The augmented model demonstrated superior tumor boundary delineation, improved region localization, and enhanced generalization compared to the baseline model.
 
-| Metric | Baseline U-Net | GAN-Augmented U-Net |
-|----------|----------|----------|
-| Dice Coefficient | 0.2067 | 0.3037 |
-| IoU Score | 0.1243 | 0.1918 |
+| Metric           | Baseline U-Net | GAN-Augmented U-Net |
+| ---------------- | -------------- | ------------------- |
+| Dice Coefficient | 0.2067         | 0.3037              |
+| IoU Score        | 0.1243         | 0.1918              |
 
 ### Performance Improvement
 
-- Dice Coefficient Improvement: **46.94%**
-- IoU Improvement: **54.36%**
+* Dice Coefficient Improvement: **46.94%**
+* IoU Improvement: **54.36%**
 
-The inclusion of GAN-generated MRI images significantly improved segmentation performance, demonstrating the effectiveness of synthetic data augmentation for medical image analysis.
+The augmented model also achieved a lower and more stable validation loss, indicating reduced overfitting and improved robustness on unseen MRI data.
 
 ---
 
@@ -101,54 +144,54 @@ The inclusion of GAN-generated MRI images significantly improved segmentation pe
 
 ### Programming
 
-- Python
+* Python
 
 ### Deep Learning
 
-- PyTorch
+* PyTorch
 
 ### Computer Vision
 
-- OpenCV
-- NumPy
+* OpenCV
+* NumPy
 
 ### Machine Learning
 
-- Scikit-Learn
+* Scikit-Learn
 
 ### Visualization
 
-- Matplotlib
+* Matplotlib
 
 ### Development Environment
 
-- Google Colab
+* Google Colab
 
 ---
 
 ## Applications
 
-- Brain Tumor Segmentation
-- Medical Image Analysis
-- Biomedical Image Processing
-- AI-Assisted Diagnosis
-- Healthcare Imaging
-- Clinical Decision Support Systems
+* Brain Tumor Segmentation
+* Medical Image Analysis
+* Biomedical Image Processing
+* Computer-Aided Diagnosis
+* AI-Assisted Healthcare
+* Clinical Decision Support Systems
 
 ---
 
 ## Future Work
 
-Potential extensions of this work include:
+Potential future improvements include:
 
-- Attention U-Net
-- U-Net++
-- 3D U-Net
-- Conditional GANs
-- Explainable AI (Grad-CAM)
-- Validation on the BraTS Dataset
-- Multi-modal MRI Analysis
-- Clinical Translation Studies
+* Attention U-Net
+* U-Net++
+* 3D U-Net
+* Conditional GANs
+* Explainable AI (Grad-CAM)
+* BraTS Dataset Validation
+* Multi-modal MRI Analysis
+* Clinical Translation Studies
 
 ---
 
@@ -159,23 +202,30 @@ brain-tumor-segmentation-gans/
 
 ├── README.md
 ├── Brain_Tumor_Segmentation_using_Deep_Learning_with_GANs.ipynb
-├── MINI_PROJECT_REPORT.pdf
-└── requirements.txt
+├── Brain_Tumor_Segmentation_GANs_Report.pdf
+├── requirements.txt
+└── LICENSE
 ```
 
 ---
 
 ## Conclusion
 
-This study demonstrates that GAN-based data augmentation can substantially improve brain tumor segmentation performance when annotated medical imaging data are limited. By integrating synthetic MRI images into the training process, the model achieved notable improvements in both Dice Coefficient and IoU Score, highlighting the potential of generative AI techniques for biomedical image analysis and healthcare applications.
+This project demonstrates that GAN-based synthetic data augmentation can effectively address data scarcity in medical image segmentation tasks. By incorporating realistic synthetic MRI images into the training process, the segmentation framework achieved significant improvements in both Dice Coefficient and IoU metrics while exhibiting improved generalization and reduced overfitting.
+
+The results highlight the potential of generative deep learning techniques for developing more reliable and clinically relevant AI-assisted medical imaging systems.
 
 ---
 
 ## Author
 
-**Priyabrata Das**  
-Biomedical Engineering  
+**Priyabrata Das**
+Biomedical Engineering
 National Institute of Technology Rourkela
+
+GitHub: https://github.com/PriyabrataDas1
+
+LinkedIn: https://www.linkedin.com/in/priyabrata-das-74244033b/
 
 ---
 
@@ -194,3 +244,4 @@ Das, P. *Brain Tumor Segmentation using Deep Learning with GANs*. GitHub Reposit
 Repository:
 
 https://github.com/PriyabrataDas1/brain-tumor-segmentation-gans
+
